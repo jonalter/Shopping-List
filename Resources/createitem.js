@@ -89,8 +89,8 @@ var loadPicker = function () {
 		locId = locationRS.fieldByName('id');
 		locName = locationRS.fieldByName('name');
 		column1.addRow(Ti.UI.createPickerRow({title:locName, location_id:locId}));
-		if (itemLocationId == locId) {
-			Ti.API.info('FOUND: '+itemLocationId+' == '+locId+' at index: '+locIndex);
+		if (itemLocationId === locId) {
+			Ti.API.info('FOUND: '+itemLocationId+' === '+locId+' at index: '+locIndex);
 			selectedLocationIndex = locIndex;
 		}
 		locIndex++;
@@ -106,10 +106,10 @@ var loadPicker = function () {
 	// 2 columns as an array
 	picker.add([column1, column2]);
 	picker.addEventListener('change', function (e) {
-		if (e.columnIndex == 0) {
+		if (e.columnIndex === 0) {
 			// location column
 			Ti.API.info('change col0 to name: ' + e.row.title + ' w/ loc: ' + e.row.location_id);
-		} else if (e.columnIndex == 1) {
+		} else if (e.columnIndex === 1) {
 			// item status column
 			Ti.API.info('change col1 to name: ' + e.row.title + ' w/ loc: ' + e.row.status_id);
 		} else {
@@ -146,7 +146,7 @@ createButton.addEventListener('click', function () {
 	if (newName) {
 		if (itemId) {
 			nameRS = db.execute('SELECT name FROM item WHERE id!=(?) AND name=(?)', itemId, newName);
-			if (nameRS.rowCount == 0) {
+			if (nameRS.rowCount === 0) {
 				Ti.API.info('About to update with name: ' + newName + 
 					' description: ' + newDescription + 
 					' location_id: ' + newLocation_id + 
@@ -173,7 +173,7 @@ createButton.addEventListener('click', function () {
 		} else {
 			// check for item with that name in db
 			var itemRS = db.execute('SELECT id FROM item WHERE name=(?)', newName);
-			if (itemRS.rowCount == 0) {
+			if (itemRS.rowCount === 0) {
 				Ti.API.info('name: ' + newName + 
 					' description: ' + newDescription + 
 					' location_id: ' + newLocation_id +

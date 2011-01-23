@@ -183,7 +183,7 @@ locationTableView.addEventListener('delete', function (e) {
 	if (locationRS.isValidRow()) {
 		// check if reference to it exists in item table
 		var itemRS = db.execute('SELECT id FROM item WHERE location_id=(?)', locId);
-		if (itemRS.rowCount == 0){
+		if (itemRS.rowCount === 0){
 			// delete row from location
 			db.execute('DELETE FROM location WHERE id=(?)', locId);
 			Ti.API.info('deleted: ' + e.rowData.title);
@@ -195,7 +195,7 @@ locationTableView.addEventListener('delete', function (e) {
 				test: 'viewlocation.js', 
 				locId: locId
 			};
-			if (locationTableView.data[0].rowCount == e.index) {
+			if (locationTableView.data[0].rowCount === e.index) {
 				locationTableView.appendRow(newLocation);
 			} else {
 				locationTableView.insertRowBefore(e.index, newLocation);
@@ -273,9 +273,9 @@ var updateItemNameInTable = function (item, tableview){
 			test: tableData.rows[i].test ,
 			itemId: tableData.rows[i].itemId
 		};
-		if ( tableData.rows[i].itemId == item.itemId ) {
+		if ( tableData.rows[i].itemId === item.itemId ) {
 			newData[i].title = item.title;
-			Ti.API.info(tableData.rows[i].itemId +'=='+ item.itemId);
+			Ti.API.info(tableData.rows[i].itemId +'==='+ item.itemId);
 		} else {
 			newData[i].title = tableData.rows[i].title;
 			Ti.API.info(tableData.rows[i].itemId + '!=' + item.itemId);

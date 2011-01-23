@@ -44,7 +44,7 @@ createButton.addEventListener('click', function () {
 	var db = Ti.Database.install('shoppingDB.sql', '');
 	if (newName) {
 		var locationRS = db.execute('SELECT id FROM location WHERE name=(?)', newName);
-		if (locationRS.rowCount == 0) {
+		if (locationRS.rowCount === 0) {
 			db.execute('INSERT into location (name) VALUES (?)', newName);
 			var idRS = db.execute('SELECT id FROM location WHERE name=(?)', newName);
 			var lastInsertId;

@@ -20,7 +20,7 @@ var getItem = function() {
 							'INNER JOIN location as l '+
 							'ON i.location_id=l.id '+
 							'WHERE i.id=(?) ', itemId);
- 	if (itemRS.rowCount == 0) {
+ 	if (itemRS.rowCount === 0) {
 		alert('could not find item');
 		Ti.API.error('could not find item with id: ' + itemId + ' in database: item');
 	}
